@@ -1,4 +1,4 @@
-﻿namespace CW_less_intuitive_UI.Model.UserLoginStuf
+﻿namespace UserLogin
 {
     public class Log
     {

@@ -1,14 +1,15 @@
-﻿﻿﻿using CW.Controller;
+﻿using Interfaces;
+using UserLogin;
 
 namespace CW.Model
 {
     public class LoginModel
     {
-        private readonly LoginController _controller;
+        private readonly ILoginController _controller;
 
-        public LoginModel(LoginController controller)
+        public LoginModel(ILoginController controller)
         {
-            this._controller = controller;
+            _controller = controller;
         }
 
         public User GetUser(string username, string password)

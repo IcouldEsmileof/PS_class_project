@@ -1,9 +1,11 @@
-﻿using CW.Model;
-using CW.View;
+﻿using CW.View;
+using CW.Model;
+using Interfaces;
+using UserLogin;
 
 namespace CW.Controller
 {
-    public class LoginController
+    public class LoginController : ILoginController
     {
         private readonly LoginView _view;
         private readonly LoginModel _model;

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
 using CW.Controller;
 
@@ -9,8 +11,6 @@ namespace CW.View
         private readonly UserController _controller;
 
         private string _input1;
-        private string _input2;
-        private string _output;
 
         public string InputUser
         {
@@ -22,25 +22,7 @@ namespace CW.View
             }
         }
 
-        public string InputRole
-        {
-            get => _input2;
-            set
-            {
-                _input2 = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("InputRole"));
-            }
-        }
-
-        public string Output
-        {
-            get => _output;
-            set
-            {
-                _output = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Output"));
-            }
-        }
+        public ObservableCollection<string> Roles { get; set; }
 
         public UserRoleView(UserController contr)
         {
@@ -53,8 +35,14 @@ namespace CW.View
         private void Submit(object sender, RoutedEventArgs e)
         {
             BtnSubmit.IsEnabled = false;
-            //_controller.AlertUser(InputUser + InputRole);
-            _controller.ChangeUserRole(InputUser, InputRole);
+            string role = Chosen.SelectedIndex.ToString();
+            _controller.ChangeUserRole(InputUser, role);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            _controller.SecondaryWindowIsClosing();
         }
     }
 }

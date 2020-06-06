@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace CW_less_intuitive_UI.Model.UserLoginStuf
+namespace UserLogin
 {
     public static class Logger
     {
@@ -11,7 +11,7 @@ namespace CW_less_intuitive_UI.Model.UserLoginStuf
 
         public static string FileName
         {
-            get { return "D:\\Icould\\C#\\PS_CW\\CW\\CW\\log.txt"; }
+            get { return "..\\..\\..\\..\\UserLogin\\log.txt"; }
             private set { }
         }
 
@@ -29,7 +29,7 @@ namespace CW_less_intuitive_UI.Model.UserLoginStuf
 
         public static string GetCurrentSessionActivities()
         {
-            StringBuilder s = new StringBuilder();
+            StringBuilder s = new StringBuilder("\n");
             currentSessionActivities.ForEach(i => s.Append(i + "\n"));
             return s.ToString();
         }

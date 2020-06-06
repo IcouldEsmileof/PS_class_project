@@ -1,10 +1,11 @@
 ﻿using CW_less_intuitive_UI.Model;
-using CW_less_intuitive_UI.Model.UserLoginStuf;
 using CW_less_intuitive_UI.View;
+using Interfaces;
+using UserLogin;
 
 namespace CW_less_intuitive_UI.Controller
 {
-    public class LoginController
+    public class LoginController: ILoginController
     {
         private readonly LoginView _view;
         private readonly LoginModel _model;

@@ -1,81 +1,56 @@
-﻿﻿using System;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using CW.Controller;
+using Interfaces;
+using UserLogin;
 
 namespace CW.Model
 {
     public class UserModel
     {
-        private readonly UserController _controller;
+        private readonly IUserController _controller;
 
-        public UserModel(UserController contr)
+        public UserModel(IUserController contr)
         {
             _controller = contr;
         }
 
         public bool ShowMainMenu(User user)
         {
-            if (user.Role == (int) UserRole.Admin)
+            _controller.ShowUser("Здравей " + user.Username + "\n");
+            if (user.ActiveTo != null && (user.Role == (int) UserRole.Admin && user.ActiveTo.Value.CompareTo(DateTime.Now)>0))
             {
-                _controller.ShowUser("Изберте опция:\n" +
-                                     "0: Изход\n" +
-                                     "1: Промяна на роля на потребител\n" +
-                                     "2: Промяна на активност на потребител\n" +
-                                     "3: Списък на потребителите\n" +
-                                     "4: Преглед на лог активност\n" +
-                                     "5: Преглед на текуща активност\n");
                 return true;
             }
             else
             {
-                _controller.ShowUser("Нямате достъп");
+                _controller.AppendToShowUser("Нямате достъп.\nТрябва да сте админ, ако искате да използванете приложението.\n");
                 return false;
             }
         }
 
-        public string GetRoleMenu()
+        public List<string> GetRoles()
         {
-            return "0: Anonymous\n" +
-                   "1: Admin\n" +
-                   "2: Inspector\n" +
-                   "3: Professor\n" +
-                   "4: Student\n" +
-                   "Въведете потребителско име и номера на новата роля в полетата по долу.\n";
+            List<string> rolesList = new List<string>();
+            for (int i = 0; i < (int) UserRole.Max; i++)
+            {
+                rolesList.Add(((UserRole)i).ToString());
+            }
+
+            return rolesList;
         }
 
         public bool ChangeRole(string username, string role)
         {
-            if (!Enum.TryParse(role, out UserRole r))
+            UserRole r;
+            if (!Enum.TryParse(role, out r))
             {
-                switch (role)
-                {
-                    case "Anonymous":
-                    case "0":
-                        r = UserRole.Anonymous;
-                        break;
-                    case "Admin":
-                    case "1":
-                        r = UserRole.Admin;
-                        break;
-                    case "Inspector":
-                    case "2":
-                        r = UserRole.Inspector;
-                        break;
-                    case "Professor":
-                    case "3":
-                        r = UserRole.Professor;
-                        break;
-                    case "Student":
-                    case "4":
-                        r = UserRole.Student;
-                        break;
-                    default:
-                        _controller.AlertUser("Невалидна роля.");
-                        return false;
-                }
+                _controller.AlertUser("Невалидна роля.");
+                return false;
             }
-            else if (r >= UserRole.Max)
+
+            if (r >= UserRole.Max||(int)r<0)
             {
                 _controller.AlertUser("Невалидна роля.");
                 return false;
@@ -148,6 +123,7 @@ namespace CW.Model
         {
             try
             {
+                _controller.ShowUser("");
                 var reader = new StreamReader(Logger.FileName);
                 for (; !reader.EndOfStream;)
                 {
@@ -164,10 +140,10 @@ namespace CW.Model
 
         public void ShowCurrentActivity()
         {
-            _controller.ShowUser(Logger.GetCurrentSessionActivities());
+            _controller.AppendToShowUser(Logger.GetCurrentSessionActivities());
         }
 
-        public UserController.ToExec ProcessMainInput(string input)
+        public IUserController.ToExec ProcessMainInput(string input)
         {
             if (int.TryParse(input, out var result))
             {

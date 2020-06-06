@@ -5,18 +5,26 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:CW.View"
         mc:Ignorable="d"
-        Title="Login" Height="250" Width="550" ResizeMode="NoResize">
+        Title="Вход" Height="250" Width="500" ResizeMode="NoResize">
     <Grid>
-        <Label Content="Username" HorizontalAlignment="Left" Margin="35,35,0,0" VerticalAlignment="Top" Height="35"
-               Width="105" />
-        <Label Content="Password" HorizontalAlignment="Left" Margin="35,90,0,0" VerticalAlignment="Top" Width="105"
-               Height="35" />
-        <TextBox HorizontalAlignment="Left" Height="30" Margin="150,35,0,0" TextWrapping="Wrap"
+        <Label Content="Потребителско име" HorizontalAlignment="Left"
+               Margin="15,35,0,0" VerticalAlignment="Top"
+               Height="25" Width="150" />
+        <Label Content="Парола" HorizontalAlignment="Left"
+               Margin="15,90,0,0" VerticalAlignment="Top"
+               Height="25" Width="150" />
+        <TextBox HorizontalAlignment="Left" 
+                 Height="20" Width="300" 
+                 Margin="150,40,0,0" TextWrapping="Wrap"
                  Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:LoginView}}, Path=User}"
-                 VerticalAlignment="Top" Width="350" />
-        <TextBox HorizontalAlignment="Left" Height="30" Margin="150,90,0,0" TextWrapping="Wrap"
+                 VerticalAlignment="Top"  />
+        <TextBox HorizontalAlignment="Left" 
+                 Height="20" Width="300"
+                 Margin="150,95,0,0" TextWrapping="Wrap"
                  Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:LoginView}}, Path=Pass}"
-                 VerticalAlignment="Top" Width="350" />
-        <Button Content="Login" Click="Login" Width="400" Height="50" Margin="0,130,0,0" />
+                 VerticalAlignment="Top" />
+        <Button Content="Вход" Click="Login" 
+                Height="50" Width="400" 
+                Margin="0,130,0,0" />
     </Grid>
 </Window>

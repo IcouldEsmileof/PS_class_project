@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace CW_less_intuitive_UI.Model.UserLoginStuf
+namespace UserLogin
 {
     public class LoginValidation
     {

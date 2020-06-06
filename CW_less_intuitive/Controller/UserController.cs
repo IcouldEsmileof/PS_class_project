@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using CW_less_intuitive_UI.Model;
-using CW_less_intuitive_UI.Model.UserLoginStuf;
 using CW_less_intuitive_UI.View;
 using Interfaces;
+using UserLogin;
 
 namespace CW_less_intuitive_UI.Controller
 {
@@ -13,8 +13,6 @@ namespace CW_less_intuitive_UI.Controller
         private UserActiveToView _userActiveToView;
         private UserRoleView _userRoleView;
         private readonly UserModel _model;
-
-        public delegate void ToExec();
 
         public UserController(User user)
         {
@@ -105,7 +103,7 @@ namespace CW_less_intuitive_UI.Controller
 
         public void ProcessMainInput(string input)
         {
-            ToExec toExec = _model.ProcessMainInput(input);
+            IUserController.ToExec toExec = _model.ProcessMainInput(input);
             toExec?.Invoke();
         }
 

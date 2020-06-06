@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using CW.Controller;
 
@@ -40,15 +41,7 @@ namespace CW.View
             set
             {
                 _output = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("Output"));
-                }
-                else
-                {
-                    BrokenTb.Text = _output;
-                    _controller.AlertUser("Output changed but control not.");
-                }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Output"));
             }
         }
 
@@ -61,8 +54,13 @@ namespace CW.View
         private void Submit(object sender, RoutedEventArgs e)
         {
             BtnSubmit.IsEnabled = false;
-            //controller.AlertUser(Output);
             _controller.ChangeUserActiveTo(InputUser, InputActiveTo);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            _controller.SecondaryWindowIsClosing();
         }
     }
 }

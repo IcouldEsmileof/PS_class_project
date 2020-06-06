@@ -1,19 +1,21 @@
-﻿using System.Windows;
-using CW.Model;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Windows;
 using CW.View;
+using CW.Model;
+using Interfaces;
+using UserLogin;
 
 namespace CW.Controller
 {
-    public class UserController
+    public class UserController : IUserController
     {
         private readonly User _user;
         private readonly UserView _view;
         private UserActiveToView _userActiveToView;
         private UserRoleView _userRoleView;
         private readonly UserModel _model;
-
-        public delegate void ToExec();
-
+        public bool isUserAdmin = false;
         public UserController(User user)
         {
             _user = user;
@@ -36,26 +38,40 @@ namespace CW.Controller
 
         public void ActivateMainMenu()
         {
-            _view.BtnSubmit.IsEnabled = _model.ShowMainMenu(_user);
+            if (_model.ShowMainMenu(_user))
+            {
+                _view.EnableButtons();
+                isUserAdmin = true;
+            }
+            else
+            {
+                _view.DisableButtons();
+                isUserAdmin = false;
+                _view.BtnReset.IsEnabled = false;
+            }
         }
 
         public void ChangeUserRole()
         {
             _userRoleView = new UserRoleView(this);
-            _userRoleView.Show();
-            _userRoleView.Output = _model.GetRoleMenu();
+            _userRoleView.Topmost=true;
+            _userRoleView.Roles = new ObservableCollection<string>();
+            foreach (var role in _model.GetRoles())
+            {
+                _userRoleView.Roles.Add(role);
+            }
+            _userRoleView.ShowDialog();
         }
 
         public void ChangeUserRole(string username, string role)
         {
             if (_model.ChangeRole(username, role))
             {
-                _userRoleView.Output = "Success";
-                _view.BtnSubmit.IsEnabled = true;
+                AlertUser( "Ролята беше сменена успешно");
             }
             else
             {
-                _userRoleView.Output = _model.GetRoleMenu();
+                _userRoleView.Roles = new ObservableCollection<string>(_model.GetRoles());
                 _userRoleView.BtnSubmit.IsEnabled = true;
             }
         }
@@ -63,16 +79,16 @@ namespace CW.Controller
         public void ChangeUserActiveTo()
         {
             _userActiveToView = new UserActiveToView(this);
-            _userActiveToView.Show();
+            _userActiveToView.Topmost=true;
             _userActiveToView.Output = _model.GetActiveToMenu();
+            _userActiveToView.ShowDialog();
         }
 
         public void ChangeUserActiveTo(string username, string activeTo)
         {
             if (_model.ChangeActiveTo(username, activeTo))
             {
-                _userActiveToView.Output = "Success";
-                _view.BtnSubmit.IsEnabled = true;
+                AlertUser("Датата на активност беше сменена успешно");
             }
             else
             {
@@ -103,13 +119,21 @@ namespace CW.Controller
 
         public void ProcessMainInput(string input)
         {
-            ToExec toExec = _model.ProcessMainInput(input);
+            IUserController.ToExec toExec = _model.ProcessMainInput(input);
             toExec?.Invoke();
         }
 
         public void Close()
         {
-            _view.ToClose = true;
+            _view.Close();
+        }
+
+        public void SecondaryWindowIsClosing()
+        {
+            if (_user.ActiveTo != null && (_user.Role == (int) UserRole.Admin && _user.ActiveTo.Value.CompareTo(DateTime.Now)>0))
+            {
+                _view.EnableButtons();
+            }
         }
     }
 }

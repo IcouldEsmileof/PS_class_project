@@ -5,22 +5,44 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:CW.View"
         mc:Ignorable="d"
-        Title="Change user's activity" Height="380" Width="560" ResizeMode="NoResize">
+        Title="Промяна на активност на потребител" Height="330" Width="560" ResizeMode="NoResize">
     <Grid>
-        <TextBlock Margin="76,26,75,180" TextWrapping="Wrap" Name="BrokenTb"
-                   Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UserActiveToView}}, Path=Output}"
-                   Background="#FFDEDEDE" IsEnabled="False" />
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,230,0,97" TextWrapping="Wrap" Width="264"
-                 Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UserActiveToView}}, Path=InputActiveTo}" />
-        <Label Content="Enter Active unit" HorizontalAlignment="Left" Margin="76,230,0,0" VerticalAlignment="Top"
-               Height="41" Width="124" />
-        <Button Content="Submit" HorizontalAlignment="Left" Margin="76,276,0,0" VerticalAlignment="Top" Width="400"
-                Height="33" Name="BtnSubmit"
-                Click="Submit" />
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,189,0,138" TextWrapping="Wrap" Width="264"
-                 Text="{Binding InputUser, RelativeSource={RelativeSource AncestorType={x:Type local:UserActiveToView}}}" />
-        <Label Content="Enter Username" HorizontalAlignment="Left" Margin="76,189,0,0" VerticalAlignment="Top"
-               Height="41" Width="124" />
+        <TextBlock Margin="76,20,0,0" TextWrapping="Wrap"
+                   Text="{Binding Output, RelativeSource={RelativeSource AncestorType={x:Type local:UserActiveToView}}}"
+                   Background="#FFDEDEDE" IsEnabled="False" 
+                   Width="400" Height="100"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left" />
 
+        <TextBox Margin="209,135,0,0" TextWrapping="Wrap"
+                 Width="267"
+                 Height="25"
+                 Text="{Binding InputUser, RelativeSource={RelativeSource AncestorType={x:Type local:UserActiveToView}}}"
+                 VerticalAlignment="Top"
+                 HorizontalAlignment="Left" />
+
+        <Label Content="Потребителско име:" Margin="76,133,0,0"
+               Height="25" Width="150"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Left" />
+        
+        <TextBox Margin="209,190,0,0" TextWrapping="Wrap"
+                 Height="25" Width="267"
+                 Text="{Binding InputActiveTo,RelativeSource={RelativeSource AncestorType={x:Type local:UserActiveToView}}}"
+                 VerticalAlignment="Top"
+                 HorizontalAlignment="Left" />
+
+        <Label Content="Нова дата:" Margin="76,187,0,0"
+               Height="25" Width="124"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Left" />
+        
+        <Button Content="Потвърди" Margin="76,240,0,0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Width="400" Height="33"
+                Name="BtnSubmit"
+                Click="Submit" />
+        
     </Grid>
 </Window>

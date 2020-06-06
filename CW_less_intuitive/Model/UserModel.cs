@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using CW_less_intuitive_UI.Controller;
-using CW_less_intuitive_UI.Model.UserLoginStuf;
 using Interfaces;
+using UserLogin;
 
 namespace CW_less_intuitive_UI.Model
 {
@@ -169,7 +168,7 @@ namespace CW_less_intuitive_UI.Model
             _controller.ShowUser(Logger.GetCurrentSessionActivities());
         }
 
-        public UserController.ToExec ProcessMainInput(string input)
+        public IUserController.ToExec ProcessMainInput(string input)
         {
             if (int.TryParse(input, out var result))
             {

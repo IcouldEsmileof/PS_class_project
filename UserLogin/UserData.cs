@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CW_less_intuitive_UI.Model.UserLoginStuf
+namespace UserLogin
 {
     public static class UserData
     {

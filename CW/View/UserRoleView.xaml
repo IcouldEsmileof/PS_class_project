@@ -5,22 +5,37 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:CW.View"
         mc:Ignorable="d"
-        Title="Change user's role" Height="380" Width="560" ResizeMode="NoResize">
-    <Grid Margin="0,0,1,-1" RenderTransformOrigin="0.5,0.5">
-        <TextBlock Margin="76,26,75,180" TextWrapping="Wrap"
-                   Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UserRoleView}}, Path=Output}"
-                   Background="#FFDEDEDE" IsEnabled="False" />
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,230,0,97" TextWrapping="Wrap" Width="264"
-                 Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UserRoleView}}, Path=InputRole}" />
-        <Label Content="Enter new role id" HorizontalAlignment="Left" Margin="76,230,0,0" VerticalAlignment="Top"
-               Height="41" Width="124" />
-        <Button Content="Submit" HorizontalAlignment="Left" Margin="76,276,0,0" VerticalAlignment="Top" Width="400"
-                Height="33" Name="BtnSubmit"
-                Click="Submit" />
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,189,0,138" TextWrapping="Wrap" Width="264"
-                 Text="{Binding Path=InputUser, RelativeSource={RelativeSource AncestorType={x:Type local:UserRoleView}}}" />
-        <Label Content="Enter Username" HorizontalAlignment="Left" Margin="76,189,0,0" VerticalAlignment="Top"
-               Height="41" Width="124" />
+        Title="Промяна на роля на потребител" Height="260" Width="560" ResizeMode="NoResize">
+    <Grid Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+
+        <Button Content="Потвърди" Margin="76,150,0,0"
+                Width="400"
+                Height="40" Name="BtnSubmit"
+                Click="Submit"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top" />
+
+        <Label Content="Потребителско име" Margin="76,50,0,0"
+               Height="25" Width="125"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top" />
+
+        <TextBox Margin="212,50,0,0" TextWrapping="Wrap"
+                 Height="25" Width="265"
+                 Text="{Binding Path=InputUser, RelativeSource={RelativeSource AncestorType={x:Type local:UserRoleView}}}"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top" />
+
+        <Label Content="Нова роля" Margin="76,90,0,0"
+               Height="25" Width="125"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top" />
+
+        <ComboBox Margin="212,90,0,0" Name="Chosen"
+                  Width="265" Height="25"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  ItemsSource="{Binding Roles, RelativeSource={RelativeSource AncestorType={x:Type local:UserRoleView}}}" />
 
     </Grid>
 </Window>

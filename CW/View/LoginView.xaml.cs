@@ -6,8 +6,8 @@ namespace CW.View
 {
     public partial class LoginView : INotifyPropertyChanged
     {
-        private string _user;
-        private string _pass;
+        private string _user="";
+        private string _pass="";
 
         public string Pass
         {

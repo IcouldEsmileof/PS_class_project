@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using System.Windows.Input;
 using CW.Controller;
 
 namespace CW.View
@@ -8,20 +9,10 @@ namespace CW.View
     {
         private readonly UserController _controller;
 
-        private string _input;
         private string _output;
 
-        public bool ToClose = false;
 
-        public string Input
-        {
-            get => _input;
-            set
-            {
-                _input = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Input"));
-            }
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string Output
         {
@@ -39,26 +30,64 @@ namespace CW.View
             InitializeComponent();
         }
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void SubmitFromMainMenu(object sender, RoutedEventArgs e)
+        private void ChangeRole(object sender, RoutedEventArgs e)
         {
-            BtnSubmit.IsEnabled = false;
-            _controller.ProcessMainInput(Input);
-            if (ToClose)
-            {
-                Close();
-            }
-
-            BtnReset.IsEnabled = true;
+            DisableButtons();
+            _controller.ChangeUserRole();
         }
 
         private void Reset(object sender, RoutedEventArgs e)
         {
-            BtnReset.IsEnabled = false;
-            BtnSubmit.IsEnabled = true;
+            EnableButtons();
             _controller.ActivateMainMenu();
+            if (_controller.isUserAdmin)
+            {
+                _controller.AppendToShowUser("Каква е следващата Ви заявка?\n");
+            }
+        }
+
+        private void ChangeActivity(object sender, RoutedEventArgs e)
+        {
+            DisableButtons();
+            _controller.ChangeUserActiveTo();
+        }
+
+        private void ShowUsers(object sender, RoutedEventArgs e)
+        {
+            DisableButtons();
+            _controller.ShowUsersList();
+        }
+
+        private void ShowLogs(object sender, RoutedEventArgs e)
+        {
+            DisableButtons();
+            _controller.ShowLogs();
+        }
+
+        private void ShowCurrentLogs(object sender, RoutedEventArgs e)
+        {
+            DisableButtons();
+            _controller.ShowCurrentActivity();
+        }
+
+        public void DisableButtons()
+        {
+            BtnReset.IsEnabled = true;
+            BtnChangeActivity.IsEnabled = false;
+            BtnChangeRole.IsEnabled = false;
+            BtnShowLogs.IsEnabled = false;
+            BtnShowUsers.IsEnabled = false;
+            BtnShowCurrentLogs.IsEnabled = false;
+        }
+
+        public void EnableButtons()
+        {
+            BtnReset.IsEnabled = false;
+            BtnChangeActivity.IsEnabled = true;
+            BtnChangeRole.IsEnabled = true;
+            BtnShowLogs.IsEnabled = true;
+            BtnShowUsers.IsEnabled = true;
+            BtnShowCurrentLogs.IsEnabled = true;
         }
     }
 }

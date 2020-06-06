@@ -1,7 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 
-namespace CW_less_intuitive_UI.Model.UserLoginStuf
+namespace UserLogin
 {
     internal static class Program
     {
@@ -10,8 +11,10 @@ namespace CW_less_intuitive_UI.Model.UserLoginStuf
             Console.WriteLine("!!!" + mess + "!!!");
         }
 
-        /*public static void Main(string uname, string pass)
+        public static void Main()
         {
+            string uname, pass;
+            Read(out uname, out pass);
             LoginValidation lv = new LoginValidation(uname, pass, Printer);
             User u;
             if (lv.ValidateUserInput(out u))
@@ -139,7 +142,15 @@ namespace CW_less_intuitive_UI.Model.UserLoginStuf
 
 
             // DateTimeExploration();
-        }*/
+        }
+
+        private static void Read(out string uname, out string pass)
+        {
+            Console.WriteLine("Username:");
+            uname = Console.ReadLine();
+            Console.WriteLine("Password");
+            pass = Console.ReadLine();
+        }
 
         private static void DateTimeExploration()
         {

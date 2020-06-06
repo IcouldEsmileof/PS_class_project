@@ -5,22 +5,54 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:CW.View"
         mc:Ignorable="d"
-        Title="UserView" Height="450" Width="800" ResizeMode="NoResize">
+        Title="Главно меню" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
-        <ScrollViewer HorizontalAlignment="Left" Height="253" Margin="100,22,0,0" VerticalAlignment="Top" Width="592">
+        <ScrollViewer  Margin="280,10,0,0"
+                       Height="385" Width="500"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left" CanContentScroll="True" Background="#FFDEDEDE">
             <TextBlock TextWrapping="Wrap"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
                        Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UserView}}, Path=Output}"
-                       Background="#FFDEDEDE" IsEnabled="False" Width="573" />
+                       Background="#FFDEDEDE" IsEnabled="False" Padding="10,10,10,10"
+                        />
         </ScrollViewer>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="266,304,0,92" TextWrapping="Wrap" Width="426"
-                 Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UserView}}, Path=Input}" />
-        <Label Content="Enter input" HorizontalAlignment="Left" Margin="100,304,0,0" VerticalAlignment="Top"
-               Height="41" Width="124" />
-        <Button Content="Submit" HorizontalAlignment="Left" Margin="100,350,0,0" VerticalAlignment="Top" Width="285"
-                Height="42" Name="BtnSubmit"
-                Click="SubmitFromMainMenu" IsEnabled="False"/>
-        <Button Content="Reset" HorizontalAlignment="Left" Margin="411,350,0,0" VerticalAlignment="Top" Width="281"
-                Height="42" x:Name="BtnReset"
+        <Button Content="Промяна на роля на потребител" 
+                Margin="20,10,0,0" Name="BtnChangeRole"
+                Height="40" Width="250"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Click="ChangeRole" IsEnabled="True"/>
+        <Button Content="Промяна на активност на потребител" 
+                Margin="20,60,0,0" Name="BtnChangeActivity"
+                Height="40" Width="250"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Click="ChangeActivity" IsEnabled="True"/>
+        <Button Content="Преглед на списък с потребителите" 
+                Margin="20,110,0,0" Name="BtnShowUsers"
+                Height="40" Width="250"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Click="ShowUsers" IsEnabled="True"/>
+        <Button Content="Преглед на лог активност" 
+                Margin="20,160,0,0" Name="BtnShowLogs"
+                Height="40" Width="250"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Click="ShowLogs" IsEnabled="True"/>
+        <Button Content="Преглед на текуща активност"
+                Margin="20,210,0,0" Name="BtnShowCurrentLogs"
+                Height="40" Width="250"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Click="ShowCurrentLogs" IsEnabled="True"/>
+        <Button Content="Нулиране"
+                Margin="20,350,0,0" Name="BtnReset"
+                Height="40" Width="250"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
                 Click="Reset" IsEnabled="False"/>
 
     </Grid>

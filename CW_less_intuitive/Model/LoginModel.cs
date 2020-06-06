@@ -1,15 +1,15 @@
-﻿﻿﻿using CW_less_intuitive_UI.Controller;
-  using CW_less_intuitive_UI.Model.UserLoginStuf;
+﻿using Interfaces;
+using UserLogin;
 
-  namespace CW_less_intuitive_UI.Model
+namespace CW_less_intuitive_UI.Model
 {
     public class LoginModel
     {
-        private readonly LoginController _controller;
+        private readonly ILoginController _controller;
 
-        public LoginModel(LoginController controller)
+        public LoginModel(ILoginController controller)
         {
-            this._controller = controller;
+            _controller = controller;
         }
 
         public User GetUser(string username, string password)

@@ -6,4 +6,76 @@
         <UseWPF>true</UseWPF>
     </PropertyGroup>
 
+    <ItemGroup>
+        <Compile Include="..\UserLogin\**\*.cs" Exclude="..\UserLogin\**\Program.cs;..\UserLogin\Properties\**">
+            <Link>"Model\UserLogin\**\*.cs"</Link>
+        </Compile>
+        <Compile Update="..\UserLogin\Log.cs">
+            <Link>Model\UserLogin\Log.cs</Link>
+        </Compile>
+        <Compile Update="..\UserLogin\Logger.cs">
+            <Link>Model\UserLogin\Logger.cs</Link>
+        </Compile>
+        <Compile Update="..\UserLogin\LoginValidation.cs">
+            <Link>Model\UserLogin\LoginValidation.cs</Link>
+        </Compile>
+        <Compile Update="..\UserLogin\User.cs">
+            <Link>Model\UserLogin\User.cs</Link>
+        </Compile>
+        <Compile Update="..\UserLogin\UserData.cs">
+            <Link>Model\UserLogin\UserData.cs</Link>
+        </Compile>
+        <Compile Update="..\UserLogin\UserRole.cs">
+            <Link>Model\UserLogin\UserRole.cs</Link>
+        </Compile>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Compile Update="View\LoginView.xaml.cs">
+          <DependentUpon>LoginView.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="View\LoginView.xaml.cs">
+          <DependentUpon>LoginView.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="View\UserActiveToView.xaml.cs">
+          <DependentUpon>UserActiveToView.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="View\UserActiveToView.xaml.cs">
+          <DependentUpon>UserActiveToView.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="View\UserRoleView.xaml.cs">
+          <DependentUpon>UserRoleView.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="View\UserRoleView.xaml.cs">
+          <DependentUpon>UserRoleView.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="View\UserView.xaml.cs">
+          <DependentUpon>UserView.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="View\UserView.xaml.cs">
+          <DependentUpon>UserView.xaml</DependentUpon>
+        </Compile>
+    </ItemGroup>
+    
+    
+    <ItemGroup>
+      <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
+    </ItemGroup>
+    
+    
+    <ItemGroup>
+      <Page Update="View\LoginView.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\UserActiveToView.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\UserRoleView.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\UserView.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+
 </Project>
