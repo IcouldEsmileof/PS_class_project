@@ -8,7 +8,7 @@
 
     <ItemGroup>
         <Compile Include="..\UserLogin\**\*.cs" Exclude="..\UserLogin\**\Program.cs;..\UserLogin\Properties\**">
-            <Link>"Model\UserLogin\**\*.cs"</Link>
+            <Link>Model\UserLogin\**\*.cs</Link>
         </Compile>
         <Compile Update="..\UserLogin\Log.cs">
             <Link>Model\UserLogin\Log.cs</Link>
