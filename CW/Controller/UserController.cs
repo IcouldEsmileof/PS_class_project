@@ -15,7 +15,7 @@ namespace CW.Controller
         private UserActiveToView _userActiveToView;
         private UserRoleView _userRoleView;
         private readonly UserModel _model;
-        public bool isUserAdmin = false;
+        public bool IsUserAdmin;
         public UserController(User user)
         {
             _user = user;
@@ -41,12 +41,12 @@ namespace CW.Controller
             if (_model.ShowMainMenu(_user))
             {
                 _view.EnableButtons();
-                isUserAdmin = true;
+                IsUserAdmin = true;
             }
             else
             {
                 _view.DisableButtons();
-                isUserAdmin = false;
+                IsUserAdmin = false;
                 _view.BtnReset.IsEnabled = false;
             }
         }
@@ -116,11 +116,12 @@ namespace CW.Controller
         {
             _model.ShowCurrentActivity();
         }
-
+        
+        [Obsolete("Method is deprecated, please don't use it with this CW.UserController.",true)]
         public void ProcessMainInput(string input)
         {
-            IUserController.ToExec toExec = _model.ProcessMainInput(input);
-            toExec?.Invoke();
+            //IUserController.ToExec toExec = _model.ProcessMainInput(input);
+            //toExec?.Invoke();
         }
 
         public void Close()

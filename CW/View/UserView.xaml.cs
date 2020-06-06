@@ -11,7 +11,6 @@ namespace CW.View
 
         private string _output;
 
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public string Output
@@ -40,13 +39,13 @@ namespace CW.View
         {
             EnableButtons();
             _controller.ActivateMainMenu();
-            if (_controller.isUserAdmin)
+            if (_controller.IsUserAdmin)
             {
                 _controller.AppendToShowUser("Каква е следващата Ви заявка?\n");
             }
         }
 
-        private void ChangeActivity(object sender, RoutedEventArgs e)
+        private void ChangeActiveTo(object sender, RoutedEventArgs e)
         {
             DisableButtons();
             _controller.ChangeUserActiveTo();

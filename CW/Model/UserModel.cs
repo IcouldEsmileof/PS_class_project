@@ -143,6 +143,7 @@ namespace CW.Model
             _controller.AppendToShowUser(Logger.GetCurrentSessionActivities());
         }
 
+        [Obsolete("Method is deprecated, please don't use it with this CW.UserModel.",true)]
         public IUserController.ToExec ProcessMainInput(string input)
         {
             if (int.TryParse(input, out var result))

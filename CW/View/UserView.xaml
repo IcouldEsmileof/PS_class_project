@@ -29,7 +29,7 @@
                 Height="40" Width="250"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Left"
-                Click="ChangeActivity" IsEnabled="True"/>
+                Click="ChangeActiveTo" IsEnabled="True"/>
         <Button Content="Преглед на списък с потребителите" 
                 Margin="20,110,0,0" Name="BtnShowUsers"
                 Height="40" Width="250"
