@@ -1,0 +1,27 @@
+﻿<Window x:Class="CW_less_intuitive_UI.View.UserRoleView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:CW_less_intuitive_UI.View"
+        xmlns:view="clr-namespace:CW_less_intuitive_UI.View"
+        mc:Ignorable="d"
+        Title="Change user's role" Height="380" Width="560" ResizeMode="NoResize">
+    <Grid Margin="0,0,1,-1" RenderTransformOrigin="0.5,0.5">
+        <TextBlock Margin="76,26,75,180" TextWrapping="Wrap"
+                   Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type view:UserRoleView}}, Path=Output}"
+                   Background="#FFDEDEDE" IsEnabled="False" />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,230,0,97" TextWrapping="Wrap" Width="264"
+                 Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type view:UserRoleView}}, Path=InputRole}" />
+        <Label Content="Enter new role id" HorizontalAlignment="Left" Margin="76,230,0,0" VerticalAlignment="Top"
+               Height="41" Width="124" />
+        <Button Content="Submit" HorizontalAlignment="Left" Margin="76,276,0,0" VerticalAlignment="Top" Width="400"
+                Height="33" Name="BtnSubmit"
+                Click="Submit" />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,189,0,138" TextWrapping="Wrap" Width="264"
+                 Text="{Binding Path=InputUser, RelativeSource={RelativeSource AncestorType={x:Type view:UserRoleView}}}" />
+        <Label Content="Enter Username" HorizontalAlignment="Left" Margin="76,189,0,0" VerticalAlignment="Top"
+               Height="41" Width="124" />
+
+    </Grid>
+</Window>

@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <UseWPF>true</UseWPF>
+        <RootNamespace>CW_less_intuitive_UI</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Page Update="View\LoginView.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\UserActiveToView.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\UserRoleView.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\UserView.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="View\LoginView.xaml.cs">
+        <DependentUpon>LoginView.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="View\UserActiveToView.xaml.cs">
+        <DependentUpon>UserActiveToView.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="View\UserRoleView.xaml.cs">
+        <DependentUpon>UserRoleView.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="View\UserView.xaml.cs">
+        <DependentUpon>UserView.xaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
+    </ItemGroup>
+
+</Project>

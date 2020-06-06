@@ -1,0 +1,27 @@
+﻿<Window x:Class="CW.View.UserView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:CW.View"
+        mc:Ignorable="d"
+        Title="UserView" Height="450" Width="800" ResizeMode="NoResize">
+    <Grid>
+        <ScrollViewer HorizontalAlignment="Left" Height="253" Margin="100,22,0,0" VerticalAlignment="Top" Width="592">
+            <TextBlock TextWrapping="Wrap"
+                       Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UserView}}, Path=Output}"
+                       Background="#FFDEDEDE" IsEnabled="False" Width="573" />
+        </ScrollViewer>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="266,304,0,92" TextWrapping="Wrap" Width="426"
+                 Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:UserView}}, Path=Input}" />
+        <Label Content="Enter input" HorizontalAlignment="Left" Margin="100,304,0,0" VerticalAlignment="Top"
+               Height="41" Width="124" />
+        <Button Content="Submit" HorizontalAlignment="Left" Margin="100,350,0,0" VerticalAlignment="Top" Width="285"
+                Height="42" Name="BtnSubmit"
+                Click="SubmitFromMainMenu" IsEnabled="False"/>
+        <Button Content="Reset" HorizontalAlignment="Left" Margin="411,350,0,0" VerticalAlignment="Top" Width="281"
+                Height="42" x:Name="BtnReset"
+                Click="Reset" IsEnabled="False"/>
+
+    </Grid>
+</Window>
