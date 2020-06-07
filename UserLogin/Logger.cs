@@ -11,7 +11,7 @@ namespace UserLogin
 
         public static string FileName
         {
-            get { return "..\\..\\..\\..\\UserLogin\\log.txt"; }
+            get { return "D:\\Icould\\C#\\CW_with_core\\CW\\UserLogin\\log.txt"; }
             private set { }
         }
 
