@@ -11,8 +11,8 @@ namespace CW.View
 
         private readonly UserController _controller;
 
-        private string _input1;
-        private string _input2;
+        private string _input1="";
+        private string _input2="";
         private string _output;
 
         public string InputUser

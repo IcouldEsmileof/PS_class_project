@@ -116,6 +116,7 @@ namespace CW.Model
 
         public void ShowUserList()
         {
+            _controller.ShowUser("Списък с потребители:\n");
             UserData.TestUsers.ForEach(u => _controller.AppendToShowUser(u + "\n"));
         }
 
@@ -123,7 +124,7 @@ namespace CW.Model
         {
             try
             {
-                _controller.ShowUser("");
+                _controller.ShowUser("Логове записани във файла:\n");
                 var reader = new StreamReader(Logger.FileName);
                 for (; !reader.EndOfStream;)
                 {
@@ -140,6 +141,7 @@ namespace CW.Model
 
         public void ShowCurrentActivity()
         {
+            _controller.ShowUser("Логове от текущата активност:\n");
             _controller.AppendToShowUser(Logger.GetCurrentSessionActivities());
         }
 

@@ -65,12 +65,21 @@ namespace CW.Controller
 
         public void ChangeUserRole(string username, string role)
         {
-            if (_model.ChangeRole(username, role))
+            if (!username.Equals(_user.Username))
             {
-                AlertUser( "Ролята беше сменена успешно");
+                if (_model.ChangeRole(username, role))
+                {
+                    AlertUser("Ролята беше сменена успешно");
+                }
+                else
+                {
+                    _userRoleView.Roles = new ObservableCollection<string>(_model.GetRoles());
+                    _userRoleView.BtnSubmit.IsEnabled = true;
+                }
             }
             else
             {
+                MessageBox.Show("Опитвате се да промените собствената си роля.","Грешка");
                 _userRoleView.Roles = new ObservableCollection<string>(_model.GetRoles());
                 _userRoleView.BtnSubmit.IsEnabled = true;
             }

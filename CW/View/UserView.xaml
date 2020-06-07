@@ -30,7 +30,7 @@
                 VerticalAlignment="Top"
                 HorizontalAlignment="Left"
                 Click="ChangeActiveTo" IsEnabled="True"/>
-        <Button Content="Преглед на списък с потребителите" 
+        <Button Content="Преглед на списъка с потребители" 
                 Margin="20,110,0,0" Name="BtnShowUsers"
                 Height="40" Width="250"
                 VerticalAlignment="Top"
